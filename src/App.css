@@ -1,0 +1,31 @@
+h1#ff{
+    color: aqua;
+  }
+ #bt{
+  background-color: aquamarine;
+  text-decoration-color: antiquewhite;
+ }
+ img{
+  width: 100px;
+  height: 100px;
+  border-radius: 40px;
+  object-fit: cover;
+ }
+ .page{
+   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  box-sizing: border-box;
+  background: #f0f2f5;
+ }
+.cadre{
+   background: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px; /* largeur maximale du cadre */
+  box-sizing: border-box;
+}
