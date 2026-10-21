@@ -5,33 +5,66 @@ import viteLogo from './assets/vite.svg'
 import Bienvenu from './components/Bienvenu'
 import Image from './assets/fill.jpg'
 import './App.css'
+import Header from './components/Header'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+const etudiant =[{
+  "nom" : "Tessnim",
+  "prenom" :"sassi",
+  "email" :"tessnimsassi@gmail.com",
+   "tel" :"+216 999999999",
+   "fil" :"Genie logiciel et systémes dinformatique",
+   "ann" :"2026/2027",
+   "grp" :"GLSI B",
+   "vill" :"nabeul",
+   "Image": Image,},
+   {
+  "nom" : "sara",
+  "prenom" :"trabelsi",
+  "email" :"saratrabelsi@gmail.com",
+   "tel" :"+216 999999999",
+   "fil" :"Genie logiciel et systémes dinformatique",
+   "ann" :"2026/2027",
+   "grp" :"GLSI C",
+   "vill" :"Mahdia",
+   "Image": Image,},
+   {"nom" : "salim",
+  "prenom" :"boubaker",
+  "email" :"salimboubaker@gmail.com",
+   "tel" :"+216 999999999",
+   "fil" :"Genie logiciel et systémes dinformatique",
+   "ann" :"2026/2027",
+   "grp" :"GLSI A",
+   "vill" :"sousse",
+   }
+   
+  ] 
 function App() {
-  const etudiant = {
-    "nom" : "Tessnim",
-    "prenom" :"sassi",
-    "email" :"tessnimsassi@gmail.com",
-     "tel" :"+216 999999999",
-     "fil" :"Genie logiciel et systémes dinformatique",
-     "ann" :"2026/2027",
-     "grp" :"GLSI B",
-     "vill" :"nabeul",
-     "image": Image,}
   return (
+    <div>
+      <Header></Header>
+      <Navbar></Navbar>
     <div class="page">
-      <div class="cadre">
-    <img src={etudiant.image} alt="image de l etudiant" />
-    <h1 id="ff">Fiche étudiant</h1>
-      <p><strong>Nom & Prenom :</strong>{etudiant.nom} {etudiant.prenom}</p>
-      <p><strong>Email:</strong>{etudiant.email} </p>
-      <p><strong>Telephone:</strong>{etudiant.tel}</p>
-      <p><strong>Filiere:</strong>{etudiant.fil}</p>
-      <p><strong>Année d'etudes:</strong>{etudiant.ann}</p>
-      <p><strong>Groupe:</strong>{etudiant.grp}</p>
-      <p><strong>Ville:</strong>{etudiant.vill}</p>
-      <button style={{ ing:"6px 12px"}} id="bt">Contacter</button>
+      
+      {etudiant.map((etudiant) => (
+     <Bienvenu 
+     key={etudiant.email}
+      prenom={etudiant.prenom}
+     nom={etudiant.nom}
+     email={etudiant.email}
+     tel={etudiant.tel}
+     fil={etudiant.fil}
+     ann={etudiant.ann}
+     grp={etudiant.grp}
+     vill={etudiant.vill}
+     Image={etudiant.Image}
+     >
+     </Bienvenu>))}
+</div>
+<Footer></Footer>
 </div>
 
-    </div>)}
+    )}
 export default App
 
 
