@@ -8,7 +8,10 @@ import './App.css'
 import Header from './components/Header'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-const etudiant =[{
+
+function App() {
+  const [etudiant , setEtudiants ] = useState([
+    {
   "nom" : "Tessnim",
   "prenom" :"sassi",
   "email" :"tessnimsassi@gmail.com",
@@ -36,15 +39,30 @@ const etudiant =[{
    "ann" :"2026/2027",
    "grp" :"GLSI A",
    "vill" :"sousse",
-   }
-   
-  ] 
-function App() {
+   "Image": Image,
+   }]);
+   function ajouterEtudiant() {
+  const nouvelEtudiant = {
+    nom: "Ben Salem",
+    prenom: "Yassine",
+    email: "yassine.bensalem@gmail.com",
+    tel: "+216 44 444 444",
+    fil: "Génie Logiciel et Systèmes d'Information",
+    ann: "2ème année",
+    grp: "GLSI 1",
+    vill: "Sfax",
+    
+  };
+  setEtudiants([...etudiant, nouvelEtudiant]);
+}
   return (
     <div>
       <Header></Header>
       <Navbar></Navbar>
-    <div class="page">
+      <div className="actions">
+        <button id='btaj' onClick={ajouterEtudiant}>+ Ajouter un étudiant</button>
+      </div>
+    <div className="page">
       
       {etudiant.map((etudiant) => (
      <Bienvenu 
