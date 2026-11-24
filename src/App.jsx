@@ -17,62 +17,57 @@ function App() {
   id:"s1",
   "prenom" :"sassi",
   "email" :"tessnimsassi@gmail.com",
-   "tel" :"+216 999999999",
-   "fil" :"Genie logiciel et systémes dinformatique",
-   "ann" :"2026/2027",
-   "grp" :"GLSI B",
-   "vill" :"nabeul",
+   "telephone" :"+216 999999999",
+   "filiere" :"Genie logiciel et systémes dinformatique",
+   "anneeEtude" :"2026/2027",
+   "group" :"GLSI B",
+   "ville" :"nabeul",
    "Image": Image,},
    {
   "nom" : "sara",
   id:"s2",
   "prenom" :"trabelsi",
   "email" :"saratrabelsi@gmail.com",
-   "tel" :"+216 999999999",
-   "fil" :"Genie logiciel et systémes dinformatique",
-   "ann" :"2026/2027",
-   "grp" :"GLSI C",
-   "vill" :"Mahdia",
+   "telephone" :"+216 999999999",
+   "filiere" :"Genie logiciel et systémes dinformatique",
+   "anneeEtude" :"2026/2027",
+   "group" :"GLSI C",
+   "ville" :"Mahdia",
    "Image": Image,},
    {"nom" : "salim",
     id:"s3",
   "prenom" :"boubaker",
   "email" :"salimboubaker@gmail.com",
-   "tel" :"+216 999999999",
-   "fil" :"Genie logiciel et systémes dinformatique",
-   "ann" :"2026/2027",
-   "grp" :"GLSI A",
-   "vill" :"sousse",
+   "telephone" :"+216 999999999",
+   "filiere" :"Genie logiciel et systémes dinformatique",
+   "anneeEtude" :"2026/2027",
+   "group" :"GLSI A",
+   "ville" :"sousse",
    "Image": Image,
    }]);
-   function ajouterEtudiant() {
-  const nouvelEtudiant = {
-    nom: "Ben Salem",
-    id:"s4",
-    prenom: "Yassine",
-    email: "yassine.bensalem@gmail.com",
-    tel: "+216 44 444 444",
-    fil: "Génie Logiciel et Systèmes d'Information",
-    ann: "2ème année",
-    grp: "GLSI 1",
-    vill: "Sfax",
-    
-  };
-  setEtudiants([...etudiant, nouvelEtudiant]);
+   const [etudiantAModifier, setEtudiantAModifier] = useState(null);
+ function ajouterEtudiant(nouvelEtudiant) {
+  const etudiantAvecId = { ...nouvelEtudiant, id: Date.now() };
+  setEtudiants((anciensEtudiants) => [...anciensEtudiants, etudiantAvecId]);
 }
 
-function supprimerEtudiant(email) {
-  setEtudiants(etudiants.filter((e) => e.email !== email));
+function supprimerEtudiant(id) {
+  setEtudiants(etudiant.filter((etudiant) => etudiant.id !== id));
 }
-  function modifierPrenom(email) {
-    const nouveauPrenom = prompt("Nouveau prénom :");
-    setEtudiants(
-      etudiants.map((e) =>
-        e.email === email ? { ...e, prenom: nouveauPrenom } : e
-      )
-    );
+function enregistrerModification(etudiantModifie) {
+  setEtudiants((anciensEtudiants) =>
+    anciensEtudiants.map((etudiant) =>
+      etudiant.id === etudiantAModifier.id
+        ? { ...etudiantModifie, id: etudiant.id } // keep the id
+        : etudiant
+    )
+  );
+  setEtudiantAModifier(null);
+}
+  function modifierEtudiant(etudiant) {  
+    setEtudiantAModifier(etudiant);
   }
- 
+
 
 
 
@@ -80,9 +75,13 @@ function supprimerEtudiant(email) {
     <div>
      <Header /> 
       <Navbar></Navbar>
-      <Studentform/>
+      <Studentform
+  key={etudiantAModifier ? etudiantAModifier.id : "nouveau"}
+  onAjouterEtudiant={ajouterEtudiant}
+  etudiantAModifier={etudiantAModifier}
+  onModifierEtudiant={enregistrerModification}
+/>
       <div className="actions">
-        <button id='btaj' onClick={ajouterEtudiant}>+ Ajouter un étudiant</button>
       </div>
     <div className="page">
       
@@ -93,16 +92,17 @@ function supprimerEtudiant(email) {
       id={etudiant.id}
      nom={etudiant.nom}
      email={etudiant.email}
-     tel={etudiant.tel}
-     fil={etudiant.fil}
-     ann={etudiant.ann}
-     grp={etudiant.grp}
-     vill={etudiant.vill}
+     tel={etudiant.telephone}
+     fil={etudiant.filiere}
+     ann={etudiant.anneeEtude}
+     grp={etudiant.group}
+     vill={etudiant.ville}
      Image={etudiant.Image}
-      onSupprimer={() => supprimerEtudiant(etudiant.email)}
+      onSupprimer={() => supprimerEtudiant(etudiant.id)}
       onModifier={()=> modifierPrenom(etudiant.email)}
      >
      </Bienvenu>))}
+     
 </div>
 <Footer></Footer>
 </div>

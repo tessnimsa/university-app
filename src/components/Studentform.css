@@ -1,9 +1,12 @@
 label{
-    color: red;
+    color:black;
 }
 #h3{
     color: blue;
 }
 div{
+    background-color: aliceblue;
+}
+input{
     background-color: aliceblue;
 }
